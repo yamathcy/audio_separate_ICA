@@ -2,10 +2,10 @@ import numpy as np
 
 eps = 1e-4
 
+
 class ICA:
     def __init__(self, x):
         self.x = np.matrix(x)
-
 
     def ica(self):  # 独立成分分析
         self.fit()
@@ -32,7 +32,7 @@ class ICA:
         z = V * self.x
         return z
 
-    def normalize(self,x):  # 正規化
+    def normalize(self, x):  # 正規化
         if x.sum() < 0:
             x *= -1
         return x / np.linalg.norm(x)

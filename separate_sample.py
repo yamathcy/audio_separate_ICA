@@ -3,6 +3,7 @@ import scipy as sp
 import scipy.io.wavfile as wf
 from ica import ICA
 
+
 # 混合音の作成
 def make_mixture():
 
@@ -12,10 +13,10 @@ def make_mixture():
     rate3, data3 = wf.read('voice3.wav')
     min_length = min([len(data1), len(data2), len(data3)])
 
-
     # サンプリングレートが不一致ならエラー
     if rate1 != rate2 or rate2 != rate3:
         raise ValueError('sampling_rate_Error')
+
     # 長さは一番短いのに揃える
     data1 = data1[:min_length]
     data2 = data2[:min_length]
@@ -32,6 +33,7 @@ def make_mixture():
     wf.write('mix_1.wav', rate1, y[0])
     wf.write('mix_2.wav', rate2, y[1])
     wf.write('mix_3.wav', rate3, y[2])
+
 
 def separation():
 
@@ -56,7 +58,9 @@ def separation():
     wf.write('separate2.wav', rate2, y[1])
     wf.write('separate3.wav', rate3, y[2])
 
+
 def main():
+
     mode = input('混合音の作成：0，分離：1, 終了：2')
     if mode == '0':
        make_mixture()
